@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "argon2": "^0.27.0",
     "mongoose": "^5.10.11",
     "next": "10.0.1",
     "next-auth": "^3.1.0",
