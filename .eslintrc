@@ -1,0 +1,28 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-jsx", "standard-react", "prettier"],
+  "plugins": ["prettier"],
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "max-len": ["error", 120, 4],
+    "camelcase": "off",
+    "promise/param-names": "off",
+    "prefer-promise-reject-errors": "off",
+    "no-control-regex": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "warn",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "lf",
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "singleQuote": true,
+        "semi": true
+      }
+    ]
+  }
+}
