@@ -1,29 +1,27 @@
 import { useRef, useState } from 'react';
 import Modal from 'react-modal';
+import axios from 'redaxios';
 
 Modal.setAppElement('#__next');
 
-export function AddProject() {
+export function AddProject({ onNewProject }) {
   const projectNameRef = useRef();
   const [modalOpen, setModalOpen] = useState(false);
 
   const createNewProject = async () => {
     const data = { name: projectNameRef.current.value };
-    await fetch('/api/project/new', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then((r) => r.json());
+    const {
+      data: { project },
+    } = await axios.post('/api/project/new', data);
     projectNameRef.current.value = '';
     setModalOpen(false);
+    onNewProject(project);
   };
 
   return (
     <>
       <button
-        className="text-2xl bg-gray-600 p-1 rounded-2xl w-12 h-12 flex justify-center items-center focus:outline-none"
+        className="text-2xl bg-gray-800 p-1 rounded-2xl w-12 h-12 flex justify-center items-center focus:outline-none"
         onClick={() => setModalOpen((s) => true)}
       >
         +

@@ -1,23 +1,18 @@
 import Head from 'next/head';
 import { useRef } from 'react';
+import axios from 'redaxios';
 
 export default function Register() {
   const emailRef = useRef();
   const passRef = useRef();
 
   const doRegister = async () => {
-    const body = {
+    const data = {
       email: emailRef.current.value,
       password: passRef.current.value,
     };
 
-    const result = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    }).then((r) => r.json());
+    const result = await axios.post('/api/register', data);
     console.log(result);
   };
 
