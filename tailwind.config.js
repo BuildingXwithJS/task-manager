@@ -9,6 +9,10 @@ module.exports = {
       colors: {
         'accent-1': '#333',
       },
+      gridTemplateColumns: {
+        // Simple 3 columns
+        'main-layout': '4em 15em 1fr',
+      },
     },
   },
   variants: {},

@@ -16,3 +16,8 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+html,
+body,
+#__next {
+  @apply h-screen w-screen;
+}

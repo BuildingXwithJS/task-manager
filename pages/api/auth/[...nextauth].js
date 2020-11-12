@@ -36,6 +36,21 @@ const options = {
     }),
   ],
 
+  callbacks: {
+    jwt: async (token, user, account, profile, isNewUser) => {
+      if (!user) {
+        return token;
+      }
+
+      const { password, __v, ...tokenUser } = user;
+      return Promise.resolve(tokenUser);
+    },
+    session: async (session, user, sessionToken) => {
+      session.user = user;
+      return Promise.resolve(session);
+    },
+  },
+
   // A database is optional, but required to persist accounts in a database
   database: serverRuntimeConfig.databaseUrl,
 };
