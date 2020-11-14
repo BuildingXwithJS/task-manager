@@ -22,7 +22,7 @@ export function AddProject({ onNewProject }) {
     <>
       <button
         className="text-2xl bg-gray-800 p-1 rounded-2xl w-12 h-12 flex justify-center items-center focus:outline-none"
-        onClick={() => setModalOpen((s) => true)}
+        onClick={() => setModalOpen(true)}
       >
         +
       </button>
