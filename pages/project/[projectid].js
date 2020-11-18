@@ -3,9 +3,16 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Sidebar } from '../../components/sidebar';
+import { TaskList } from '../../components/tasklist';
 import { getUserProjects } from '../api/project/all';
+import { getProjectTasks } from '../api/task/[projectid]';
 
-export default function ProjectPage({ session, projects, currentProject }) {
+export default function ProjectPage({
+  session,
+  projects,
+  tasks,
+  currentProject,
+}) {
   const router = useRouter();
 
   useEffect(() => {
@@ -34,7 +41,9 @@ export default function ProjectPage({ session, projects, currentProject }) {
               currentProject={currentProject}
             />
 
-            <div className="">Task list</div>
+            <div className="">
+              <TaskList initialTasks={tasks} currentProject={currentProject} />
+            </div>
 
             <main className="p-2">
               <h1 className="font-bold">Welcome to Next.js!</h1>
@@ -60,13 +69,28 @@ export async function getServerSideProps(context) {
     const { __v, _id, user, ...obj } = project;
     return { ...obj, _id: String(_id), user: String(user) };
   });
-
+  // resolve current project
   const currentProjectId = context.params.projectid;
   const currentProject = projects.find(
     (project) => project._id === currentProjectId
   );
 
+  // fetch tasks list for current project
+  const projectTasks = await getProjectTasks(currentProject._id);
+  // Convert mongoose ObjectIDs to strings
+  // because Next.js doesn't understand you can serialize
+  // (for some reason)
+  const tasks = projectTasks.map((task) => {
+    const { __v, _id, user, project, ...obj } = task;
+    return {
+      ...obj,
+      _id: String(_id),
+      user: String(user),
+      project: String(project),
+    };
+  });
+
   return {
-    props: { session, projects, currentProject }, // will be passed to the page component as props
+    props: { session, projects, tasks, currentProject }, // will be passed to the page component as props
   };
 }

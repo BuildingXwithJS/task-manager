@@ -6,6 +6,7 @@ const {
 // schemas
 const userSchema = require('./user');
 const projectSchema = require('./project');
+const taskSchema = require('./task');
 
 // connect to given URL
 const db = createConnection(databaseUrl, {
@@ -28,3 +29,4 @@ exports.connected = new Promise((resolve) => db.once('open', resolve));
 // models
 exports.User = db.model('User', userSchema);
 exports.Project = db.model('Project', projectSchema);
+exports.Task = db.model('Task', taskSchema);
