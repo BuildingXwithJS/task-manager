@@ -37,11 +37,16 @@ const options = {
   ],
 
   callbacks: {
+    /**
+     * We define those two callbacks to have our actual
+     * user in the session because by default next-auth
+     * uses some arbitrary user object with arbitrary fields with
+     * no other way to override it
+     */
     jwt: async (token, user, account, profile, isNewUser) => {
       if (!user) {
         return token;
       }
-
       const { password, __v, ...tokenUser } = user;
       return Promise.resolve(tokenUser);
     },
