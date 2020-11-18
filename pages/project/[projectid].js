@@ -1,21 +1,28 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { getSession, signIn, signOut } from 'next-auth/client';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { Sidebar } from '../../components/sidebar';
 import { getUserProjects } from '../api/project/all';
 
-export default function ProjectPage({ projects, currentProject }) {
-  const [session, loading] = useSession();
+export default function ProjectPage({ session, projects, currentProject }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!session.user) {
+      router.push('/login');
+    }
+  }, [session]);
 
   return (
     <>
-      {loading && <div>Loading..</div>}
-      {!session && (
+      {!session.user && (
         <>
           Not signed in <br />
           <button onClick={signIn}>Sign in</button>
         </>
       )}
-      {session && (
+      {session.user && (
         <>
           <Head>
             <title>Task Manager - {currentProject.name}</title>
@@ -42,7 +49,10 @@ export default function ProjectPage({ projects, currentProject }) {
 }
 
 export async function getServerSideProps(context) {
-  const userProjects = await getUserProjects(context);
+  // get user session
+  const session = await getSession(context);
+
+  const userProjects = await getUserProjects(session.user);
   // Convert mongoose ObjectIDs to strings
   // because Next.js doesn't understand you can serialize
   // (for some reason)
@@ -57,6 +67,6 @@ export async function getServerSideProps(context) {
   );
 
   return {
-    props: { projects, currentProject }, // will be passed to the page component as props
+    props: { session, projects, currentProject }, // will be passed to the page component as props
   };
 }
