@@ -10,7 +10,9 @@ module.exports = {
         'accent-1': '#333',
       },
       gridTemplateColumns: {
-        // Simple 3 columns
+        // 1 column project layout
+        'projects-layout': '4em 1fr',
+        // Full 3 columns layout
         'main-layout': '4em 15em 1fr',
       },
     },

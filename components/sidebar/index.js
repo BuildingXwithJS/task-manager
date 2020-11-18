@@ -1,17 +1,9 @@
-import { useEffect, useState } from 'react';
-import axios from 'redaxios';
+import { useState } from 'react';
 import { Project } from '../project';
 import { AddProject } from '../project/add';
 
-export function Sidebar() {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(async () => {
-    const { data } = await axios.get('/api/project/all');
-    console.log(data);
-    const { projects: serverProjects } = data;
-    setProjects(serverProjects);
-  }, []);
+export function Sidebar({ initialProjects = [] }) {
+  const [projects, setProjects] = useState(initialProjects);
 
   const handleNewProject = (newProject) => {
     const newProjects = projects.concat(newProject);
