@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from '../task';
 import { AddTask } from '../task/add';
 
 export function TaskList({ initialTasks = [], currentProject, currentTask }) {
   const [tasks, setTask] = useState(initialTasks);
+
+  useEffect(() => {
+    setTask(initialTasks);
+  }, [initialTasks]);
 
   const handleNewTask = (newTask) => {
     const newProjects = tasks.concat(newTask);
