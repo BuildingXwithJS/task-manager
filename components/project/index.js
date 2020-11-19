@@ -8,7 +8,7 @@ const toFirstLetters = (name) =>
 
 export function Project({ project, isCurrent }) {
   return (
-    <Link href={`/project/${project._id}`}>
+    <Link href="/project/[projectid]" as={`/project/${project._id}`}>
       <a
         className={`${
           isCurrent ? 'bg-gray-300 text-black' : 'bg-gray-700'

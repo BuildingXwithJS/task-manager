@@ -2,7 +2,10 @@ import Link from 'next/link';
 
 export function Task({ project, task, isCurrent }) {
   return (
-    <Link href={`/project/${project._id}/task/${task._id}`}>
+    <Link
+      href="/project/[projectid]/task/[taskid]"
+      as={`/project/${project._id}/task/${task._id}`}
+    >
       <a
         className={`${
           isCurrent && 'text-black'
