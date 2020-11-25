@@ -1,7 +1,5 @@
-import { getSession, signIn } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { Sidebar } from '../../../../components/sidebar';
 import { TaskList } from '../../../../components/tasklist';
 import { getUserProjects } from '../../../api/project/all';
@@ -14,42 +12,21 @@ export default function ProjectPage({
   currentProject,
   currentTask,
 }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!session.user) {
-      router.push('/login');
-    }
-  }, [session]);
-
   return (
     <>
-      {!session.user && (
-        <>
-          Not signed in <br />
-          <button onClick={signIn}>Sign in</button>
-        </>
-      )}
-      {session.user && (
-        <>
-          <Head>
-            <title>Task Manager - {currentProject.name}</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <div className="h-screen w-screen grid grid-cols-main-layout">
-            <Sidebar
-              initialProjects={projects}
-              currentProject={currentProject}
-            />
+      <Head>
+        <title>Task Manager - {currentProject.name}</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="h-screen w-screen grid grid-cols-main-layout">
+        <Sidebar initialProjects={projects} currentProject={currentProject} />
 
-            <div className="">
-              <TaskList initialTasks={tasks} currentProject={currentProject} />
-            </div>
+        <div className="">
+          <TaskList initialTasks={tasks} currentProject={currentProject} />
+        </div>
 
-            <main className="p-2">{JSON.stringify(currentTask)}</main>
-          </div>
-        </>
-      )}
+        <main className="p-2">{JSON.stringify(currentTask)}</main>
+      </div>
     </>
   );
 }
@@ -57,6 +34,15 @@ export default function ProjectPage({
 export async function getServerSideProps(context) {
   // get user session
   const session = await getSession(context);
+  // if there's no session - redirect to login
+  if (!session?.user) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
 
   const userProjects = await getUserProjects(session.user);
   // Convert mongoose ObjectIDs to strings
