@@ -9,7 +9,10 @@
     "lint": "eslint pages/ src/"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.19.0",
+    "@editorjs/paragraph": "^2.8.0",
     "argon2": "^0.27.0",
+    "emoji-mart": "^3.0.0",
     "mongoose": "^5.10.11",
     "next": "10.0.1",
     "next-auth": "^3.1.0",

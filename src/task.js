@@ -4,7 +4,7 @@ const taskSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String },
   icon: { type: String },
-  text: { type: String },
+  body: { type: Object },
   project: { type: Types.ObjectId, ref: 'Project', required: true },
   user: { type: Types.ObjectId, ref: 'User', required: true },
 });

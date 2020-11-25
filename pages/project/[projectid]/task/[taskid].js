@@ -1,9 +1,9 @@
 import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 import { Sidebar } from '../../../../components/sidebar';
+import { TaskView } from '../../../../components/task/view';
 import { TaskList } from '../../../../components/tasklist';
-import { getUserProjects } from '../../../api/project/all';
-import { getProjectTasks } from '../../../api/task/[projectid]';
+import { getProjectTasks, getUserProjects } from '../../../../src/utils';
 
 export default function ProjectPage({
   session,
@@ -25,7 +25,9 @@ export default function ProjectPage({
           <TaskList initialTasks={tasks} currentProject={currentProject} />
         </div>
 
-        <main className="p-2">{JSON.stringify(currentTask)}</main>
+        <main className="p-2">
+          <TaskView project={currentProject} task={currentTask} />
+        </main>
       </div>
     </>
   );

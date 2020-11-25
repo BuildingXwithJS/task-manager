@@ -1,7 +1,7 @@
 import { getSession, signOut } from 'next-auth/client';
 import Head from 'next/head';
 import { Sidebar } from '../components/sidebar';
-import { getUserProjects } from './api/project/all';
+import { getUserProjects } from '../src/utils';
 
 export default function Home({ session, projects }) {
   return (

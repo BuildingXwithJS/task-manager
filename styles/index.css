@@ -21,3 +21,8 @@ body,
 #__next {
   @apply h-screen w-screen;
 }
+
+.codex-editor__redactor {
+  padding-top: 2em;
+  padding-bottom: 2em !important;
+}

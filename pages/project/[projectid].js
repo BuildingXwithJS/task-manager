@@ -2,8 +2,7 @@ import { getSession, signOut } from 'next-auth/client';
 import Head from 'next/head';
 import { Sidebar } from '../../components/sidebar';
 import { TaskList } from '../../components/tasklist';
-import { getUserProjects } from '../api/project/all';
-import { getProjectTasks } from '../api/task/[projectid]';
+import { getProjectTasks, getUserProjects } from '../../src/utils';
 
 export default function ProjectPage({
   session,
