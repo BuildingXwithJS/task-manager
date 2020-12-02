@@ -19,9 +19,7 @@ export default function ProjectPage({
       <div className="h-screen w-screen grid grid-cols-main-layout">
         <Sidebar initialProjects={projects} currentProject={currentProject} />
 
-        <div className="">
-          <TaskList initialTasks={tasks} currentProject={currentProject} />
-        </div>
+        <TaskList initialTasks={tasks} currentProject={currentProject} />
 
         <main className="p-2">
           <h1 className="font-bold">Welcome to Next.js!</h1>

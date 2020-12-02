@@ -13,7 +13,7 @@ export function Sidebar({ initialProjects = [], currentProject }) {
   };
 
   return (
-    <div className="flex flex-col space-y-2 h-screen bg-coolGray-400 text-white p-2 items-center">
+    <div className="flex flex-col space-y-2 h-screen bg-coolGray-400 text-white p-2 items-center border-r border-coolGray-600 border-opacity-20">
       {projects.map((project) => (
         <Project
           key={project._id}

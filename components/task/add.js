@@ -25,7 +25,7 @@ export function AddTask({ onNewTask, currentProject }) {
     <>
       {!isEditing && (
         <button
-          className="hover:bg-gray-700 p-3 rounded flex justify-center items-center focus:outline-none"
+          className="justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 p-3 rounded flex justify-center items-center focus:outline-none"
           onClick={() => setEditing((s) => true)}
         >
           Add new task
@@ -36,7 +36,7 @@ export function AddTask({ onNewTask, currentProject }) {
         <>
           <div className="mb-4">
             <label
-              className="block text-gray-100 text-sm font-bold mb-2"
+              className="block text-sm font-medium text-coolGray-700 mb-2"
               htmlFor="taskName"
             >
               Task name
@@ -52,14 +52,14 @@ export function AddTask({ onNewTask, currentProject }) {
 
           <div className="flex items-center justify-between">
             <button
-              className="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
               onClick={createNewTask}
             >
               Add
             </button>
             <a
-              className="inline-block align-baseline font-bold text-sm text-blue-200 hover:text-blue-800"
+              className="inline-block align-baseline font-bold text-sm text-indigo-400 hover:text-indigo-600"
               href="#"
               onClick={() => setEditing(false)}
             >

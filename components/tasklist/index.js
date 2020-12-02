@@ -15,7 +15,7 @@ export function TaskList({ initialTasks = [], currentProject, currentTask }) {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-600 text-white p-2">
+    <div className="flex flex-col h-screen bg-coolGray-100 p-2 border-r border-coolGray-200">
       {tasks.map((task) => (
         <Task
           key={task._id}
