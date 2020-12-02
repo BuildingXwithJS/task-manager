@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import Modal from 'react-modal';
 import axios from 'redaxios';
 
@@ -21,10 +22,10 @@ export function AddProject({ onNewProject }) {
   return (
     <>
       <button
-        className="text-2xl bg-gray-800 p-1 rounded-2xl w-12 h-12 flex justify-center items-center focus:outline-none"
+        className="text-xl bg-coolGray-700 border border-coolGray-800 rounded-full w-12 h-12 flex justify-center items-center focus:outline-none"
         onClick={() => setModalOpen(true)}
       >
-        +
+        <FaPlus />
       </button>
 
       <Modal

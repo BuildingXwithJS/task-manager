@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         coolGray: colors.coolGray,
         indigo: colors.indigo,
+        rose: colors.rose,
         'accent-1': '#333',
       },
       gridTemplateColumns: {

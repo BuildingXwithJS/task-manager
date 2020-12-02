@@ -11,8 +11,10 @@ export function Project({ project, isCurrent }) {
     <Link href={`/project/${project._id}`}>
       <a
         className={`${
-          isCurrent ? 'bg-gray-300 text-black' : 'bg-gray-700'
-        } p-1 rounded-2xl w-12 h-12 flex justify-center items-center focus:outline-none`}
+          isCurrent
+            ? 'bg-coolGray-100 border-coolGray-200 text-black'
+            : 'bg-coolGray-700 border-coolGray-800'
+        } text-xl font-bold border rounded-full w-12 h-12 flex justify-center items-center focus:outline-none`}
         title={project.name}
       >
         {toFirstLetters(project.name)}

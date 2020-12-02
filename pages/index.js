@@ -1,4 +1,4 @@
-import { getSession, signOut } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 import { Sidebar } from '../components/sidebar';
 import { getUserProjects } from '../src/utils';
@@ -10,13 +10,12 @@ export default function Home({ session, projects }) {
         <title>Task Manager</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-screen w-screen grid grid-cols-projects-layout">
+      <div className="bg-coolGray-100 h-screen w-screen grid grid-cols-projects-layout">
         <Sidebar initialProjects={projects} />
 
         <main className="p-2">
-          <h1 className="font-bold">Welcome to Next.js!</h1>
-          Signed in as {session.user.email} <br />
-          <button onClick={signOut}>Sign out</button>
+          <h1 className="text-2xl font-bold">Welcome to Task Manager!</h1>
+          <p className="text-lg">You are signed in as {session.user.email}</p>
         </main>
       </div>
     </>
