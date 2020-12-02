@@ -32,7 +32,8 @@ export default function Login({ csrfToken }) {
             <input
               id="email"
               name="email"
-              type="text"
+              type="email"
+              placeholder="Email"
               autoComplete="email"
               className="my-1 p-1 block w-full border border-coolGray-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -49,6 +50,7 @@ export default function Login({ csrfToken }) {
               id="password"
               name="password"
               type="password"
+              placeholder="Password"
               className="my-1 p-1 block w-full border border-coolGray-700 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
